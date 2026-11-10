@@ -1,3 +1,4 @@
+import java.util.*;
 /**
  * A min-heap. 
  * 
@@ -21,6 +22,42 @@
  *  - determine return value and argument types
  *  - hold private instance variables
  */
-public class Heap {
+public class Heap <T> {
+    List<T> heap;
+    int size = 0;
 
+    public Heap(){
+        heap = new ArrayList<>();
+    }
+    public Heap(int capacity){
+        heap = new ArrayList<>(capacity);
+    }
+    
+    public void add(T val){
+        heap.add(val);
+        //heapify
+    }
+    public T pop(){
+        T val = null;
+        return val;
+        //heapify
+    }
+    public T peek(){
+        T val = null;
+        return val;
+        //heapify
+    }
+    
+    public void bubbleUp(){
+
+    }
+    public void bubbleDown(){
+
+    }
+    public int size(){
+        return size();
+    }
+    public boolean isEmpty(){
+        return size == 0;
+    }
 }
