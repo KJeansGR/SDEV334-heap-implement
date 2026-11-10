@@ -34,18 +34,30 @@ public class Heap <T> {
     }
     
     public void add(T val){
+        //check capacity and resize
+        if(size + 1 > heap.size()){
+            throw new ArrayIndexOutOfBoundsException();
+        }
         heap.add(val);
         //heapify
     }
     public T pop(){
-        T val = null;
+        if(size == 0){
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        T val = heap.get(0);
+        
+
         return val;
         //heapify
     }
+
+
     public T peek(){
-        T val = null;
-        return val;
-        //heapify
+        if(size == 0){
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        return heap.get(0);
     }
     
     public void bubbleUp(){
@@ -54,6 +66,10 @@ public class Heap <T> {
     public void bubbleDown(){
 
     }
+    public void heapify(){
+
+    }
+
     public int size(){
         return size();
     }
