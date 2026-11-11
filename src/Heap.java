@@ -1,4 +1,5 @@
 import java.util.*;
+
 /**
  * A min-heap. 
  * 
@@ -22,7 +23,7 @@ import java.util.*;
  *  - determine return value and argument types
  *  - hold private instance variables
  */
-public class Heap <T> {
+public class Heap <T>{
     List<T> heap;
     int size = 0;
 
@@ -46,7 +47,10 @@ public class Heap <T> {
             throw new ArrayIndexOutOfBoundsException();
         }
         T val = heap.get(0);
-        
+        int dex = 0;
+        while(compare(heap.get(2*dex+1), val) > 0){
+
+        }
 
         return val;
         //heapify
@@ -75,5 +79,12 @@ public class Heap <T> {
     }
     public boolean isEmpty(){
         return size == 0;
+    }
+
+
+    @Override
+    public int compare(T o1, T o2) {
+        // Example: sort alphabetically
+        return o1.compareTo(o2);
     }
 }
