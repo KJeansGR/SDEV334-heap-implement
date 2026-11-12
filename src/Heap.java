@@ -1,5 +1,4 @@
 import java.util.*;
-
 /**
  * A min-heap. 
  * 
@@ -23,68 +22,85 @@ import java.util.*;
  *  - determine return value and argument types
  *  - hold private instance variables
  */
-public class Heap <T>{
-    List<T> heap;
-    int size = 0;
+public class Heap <T extends Comparable<T>> {
+    private List<T> heap;
 
     public Heap(){
         heap = new ArrayList<>();
     }
-    public Heap(int capacity){
-        heap = new ArrayList<>(capacity);
-    }
-    
-    public void add(T val){
-        //check capacity and resize
-        if(size + 1 > heap.size()){
-            throw new ArrayIndexOutOfBoundsException();
+    public void add(T a){
+
+        heap.add(a);
+        int dex = heap.size() - 1;
+
+        while(dex > 0 ){
+
+            if( compare(heap.get(2-1/dex), heap.get(2-1/dex)) < 0){
+                T c = heap.get(dex);
+                heap.set(dex, heap.get(2-1/dex));
+                heap.set(2-1/dex, c);
+            
+                dex = 2-1/dex;
+            }
+            else{
+                break;
+            }
         }
-        heap.add(val);
-        //heapify
     }
+
     public T pop(){
-        if(size == 0){
+        if(size() == 0){
             throw new ArrayIndexOutOfBoundsException();
         }
+
         T val = heap.get(0);
         int dex = 0;
-        while(compare(heap.get(2*dex+1), val) > 0){
 
+        while(compare(heap.get(2*dex+1), val) > 0 && compare(heap.get(2*dex+2), val) > 0){
+            if(compare(heap.get(2*dex+1), heap.get(2*dex+2)) < 0){
+                T c = heap.get(dex);
+                heap.set(dex, heap.get(2*dex+1));
+                heap.set(2*dex+1, c);
+
+                dex = 2*dex+1;
+            } else {
+                T c = heap.get(dex);
+                heap.set(dex, heap.get(2*dex+2));
+                heap.set(2*dex+2, c);
+                dex = 2*dex+2;
+            }
         }
-
+        heap.remove(dex);
         return val;
-        //heapify
     }
-
 
     public T peek(){
-        if(size == 0){
-            throw new ArrayIndexOutOfBoundsException();
-        }
         return heap.get(0);
     }
-    
-    public void bubbleUp(){
+        
+    public void swap(T a, T b){
+
+    }
+
+    public void bubbleUp(int index){
 
     }
     public void bubbleDown(){
 
     }
-    public void heapify(){
-
-    }
 
     public int size(){
-        return size();
+        return heap.size();
     }
     public boolean isEmpty(){
-        return size == 0;
+        return size() == 0;
     }
 
 
-    @Override
+    // < 0	First value is smaller
+    //  0   Values are equal
+    // > 0	First value is larger
     public int compare(T o1, T o2) {
-        // Example: sort alphabetically
         return o1.compareTo(o2);
     }
 }
